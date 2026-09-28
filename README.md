@@ -1,25 +1,75 @@
-# Department of Computer Applications Website
+<div align="center">
 
-Public website project for the **Department of Computer Applications**. This repository combines a modern React frontend with a Django backend so the public site can stay fast, polished, and easy to browse while the department team manages content, pages, and structured evidence from the backend.
+<img src="frontend/src/assets/ccs-logo.png" alt="College of Computer Studies logo" width="96" height="96">
 
-## Why this project exists
+# Department of Computer Applications — Official Website
 
-The goal is to build a department website that is:
+**Department of Computer Applications · College of Computer Studies · MSU–Iligan Institute of Technology**
 
-- modern, clean, academic, and student focused
-- easy to maintain by contributors and non developer editors
-- ready to support structured content for accreditation and quality assurance work
-- open to contributors from **beginners to experts**
+A CMS-backed, accreditation-aware department website built with a **Django REST** backend and a **React + TypeScript** frontend.
 
-This repository is intentionally being shaped as an open source project. That means contributions are welcome across design, frontend, backend, content structure, accessibility, documentation, testing, and deployment.
+[![Live Site](https://img.shields.io/badge/Live%20Site-msuiit--comapps.vercel.app-0A7C3F?style=flat-square&logo=vercel&logoColor=white)](https://msuiit-comapps.vercel.app)
+[![Last Commit](https://img.shields.io/github/last-commit/paulcastor30/Department-of-Computer-Applications?style=flat-square)](https://github.com/paulcastor30/Department-of-Computer-Applications/commits/main)
+[![Issues](https://img.shields.io/github/issues/paulcastor30/Department-of-Computer-Applications?style=flat-square)](https://github.com/paulcastor30/Department-of-Computer-Applications/issues)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen?style=flat-square)](#contributing)
+[![License](https://img.shields.io/badge/License-TBD-lightgrey?style=flat-square)](#license)
+
+![Python](https://img.shields.io/badge/Python-3.12-3776AB?style=flat-square&logo=python&logoColor=white)
+![Django](https://img.shields.io/badge/Django-6.0-092E20?style=flat-square&logo=django&logoColor=white)
+![DRF](https://img.shields.io/badge/Django%20REST%20Framework-A30000?style=flat-square)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-prod-4169E1?style=flat-square&logo=postgresql&logoColor=white)
+![React](https://img.shields.io/badge/React-18-61DAFB?style=flat-square&logo=react&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.8-3178C6?style=flat-square&logo=typescript&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-5-646CFF?style=flat-square&logo=vite&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-3.4-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)
+![Vitest](https://img.shields.io/badge/Vitest-3-6E9F18?style=flat-square&logo=vitest&logoColor=white)
+
+[Live Demo](https://msuiit-comapps.vercel.app) · [Report a Bug](https://github.com/paulcastor30/Department-of-Computer-Applications/issues/new) · [Request a Feature](https://github.com/paulcastor30/Department-of-Computer-Applications/issues/new) · [Deployment Guide](DEPLOYMENT.md)
+
+</div>
+
+---
+
+## Overview
+
+This repository powers the public website of the **Department of Computer Applications (DCA)** at **MSU–IIT**. It is designed to read like a formal, student-facing academic department site while giving department staff a structured, permission-controlled way to manage content — including evidence artefacts used for accreditation and quality-assurance work.
+
+The project is intentionally developed as an **open-source, contributor-friendly codebase**. The frontend began as a polished static UI and is being migrated, page by page, to Django-backed content. Some pages are already fully dynamic; others remain placeholder-driven until their backend models land. That incremental state is expected.
+
+**Design principles**
+
+| Principle | What it means in practice |
+| --- | --- |
+| Academic & restrained | Formal tone, no promotional copy, no invented statistics |
+| Evidence-aware | First-class support for accreditation evidence (AACCUP, AUN-QA, CHED COPC/COE) |
+| Editor-friendly | Content lives in Django admin; non-developers can publish without touching code |
+| Accessible & responsive | Semantic markup, labelled controls, mobile-first layouts |
+| Maintainable | Small domain apps, typed API contracts, shared hooks — no clever code |
+
+---
+
+## Key Features
+
+- **Headless CMS workflow** — Django admin as the editorial interface, DRF read-only endpoints for the public site.
+- **Domain-driven backend** — separate apps for `core`, `academics`, `people`, `communications`, `quality`, `research`, and `extension`.
+- **Role-based editorial permissions** — one command provisions `site_admin`, `qa_editor`, `program_editor`, `faculty_editor`, `research_editor`, and `communications_editor` groups.
+- **Publishable content model** — every public entity carries `slug`, `is_published`, `featured`, `sort_order`, and audit timestamps out of the box.
+- **Faculty directory & profiles** — filterable by classification, programme, and expertise; profiles aggregate education, publications, projects, supervised theses, and more.
+- **Programme pages** — BSCA and MSCA content (PEOs, outcomes, tracks, curriculum structure, thesis information, documents) served from the API with graceful placeholder fallback.
+- **Accreditation evidence registry** — evidence documents tagged by framework and area code, linkable to programmes and faculty.
+- **Site-wide search & SEO helpers** — header search, per-page `<Seo>` metadata, breadcrumbs.
+- **Flexible deployment** — split deployment (Vercel + Railway) *or* single-origin, where Django serves the built SPA.
+- **Type-safe frontend** — TypeScript API types, TanStack Query hooks, shadcn/ui component library on Radix primitives.
+
+---
 
 ## Current architecture
 
-The repository currently has a `backend` folder, a `frontend` folder, and a root `requirements.txt` file, with Django serving as the backend and a Vite based React frontend for the public user interface.【turn837861view0†L200-L208】【turn189303view0†L0-L0】
+The repository currently has a `backend` folder, a `frontend` folder, and a root `requirements.txt` file, with Django serving as the backend and a Vite based React frontend for the public user interface.
 
-The backend is configured with Django 6.0.3, Django REST framework, and `django-cors-headers`, and is structured around domain apps such as `core`, `academics`, `people`, `research`, `extension`, `communications`, and `quality`.【turn837861view2†L0-L2】
+The backend is configured with Django 6.0.3, Django REST framework, and `django-cors-headers`, and is structured around domain apps such as `core`, `academics`, `people`, `research`, `extension`, `communications`, and `quality`.
 
-The frontend uses Vite with React, TypeScript, React Router, React Query, and a Tailwind based component setup, with scripts for development, build, linting, preview, and tests already defined in `package.json`.【turn663442view0†L0-L0】
+The frontend uses Vite with React, TypeScript, React Router, React Query, and a Tailwind based component setup, with scripts for development, build, linting, preview, and tests already defined in `package.json`.
 
 ## Repository structure
 
